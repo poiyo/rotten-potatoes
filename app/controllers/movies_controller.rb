@@ -7,11 +7,18 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @movies = Movie.where("1 = 1") # Ack
+    @all_ratings = Movie.ratings
     @category = params[:category]
     @sort = params[:sort]
+    @ratings = params[:ratings]
+    if @ratings
+        @movies = @movies.where("rating in (?)", @ratings.keys)
+    else
+      @ratings = {"G" => "1", "PG" => "1", "PG-13" => "1", "R" => "1"}
+    end
     if @category and @sort
-      @movies = Movie.find(:all, :order => "#{@category} #{@sort}")
+      @movies = @movies.find(:all, :order => "#{@category} #{@sort}")
     end
   end
 
