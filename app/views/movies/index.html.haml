@@ -4,9 +4,11 @@
 %table#movies
   %thead
     %tr
-      %th Movie Title
+      %th{:class => "#{@category == "title" ? "hilite" : ""}"}
+        %a#title_header{:href => movies_path({"category" => "title", "sort" => "asc"})} Movie Title
       %th Rating
-      %th Release Date
+      %th{:class => "#{@category == "release_date" ? "hilite" : ""}"}
+        %a#release_date_header{:href => movies_path({"category" => "release_date", "sort" => "asc"})} Release Date
       %th More Info
   %tbody
     - @movies.each do |movie|

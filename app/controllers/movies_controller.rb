@@ -8,6 +8,11 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @category = params[:category]
+    @sort = params[:sort]
+    if @category and @sort
+      @movies = Movie.find(:all, :order => "#{@category} #{@sort}")
+    end
   end
 
   def new
