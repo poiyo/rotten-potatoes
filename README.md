@@ -1,4 +1,0 @@
-rotten-potatoes
-===============
-
-Rotten Potatoes
